@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNS Resolution</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
         <p>Enter a domain name to find its IP address.</p>
 
         <form method="POST">
-            <input type="text" name="domain" placeholder="Enter domain (e.g. google.com)">
+            <input type="text" name="domain" value="{{ domain }}" placeholder="Enter domain (e.g. google.com)" required>
             <button type="submit">Resolve</button>
         </form>
 
@@ -28,7 +28,9 @@
             </div>
         {% endif %}
 
-        <a href="/reverse-dns">Go to Reverse DNS Lookup</a>
+        <div class="link-group">
+            <a href="/reverse-dns">Go to Reverse DNS Lookup</a>
+        </div>
     </div>
 </body>
 </html>
