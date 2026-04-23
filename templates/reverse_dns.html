@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse DNS Lookup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Reverse DNS Lookup</h1>
+        <p>Enter an IP address to find its domain name.</p>
+
+        <form method="POST">
+            <input type="text" name="ip" placeholder="Enter IP address (e.g. 8.8.8.8)">
+            <button type="submit">Lookup</button>
+        </form>
+
+        {% if domain_name %}
+            <div class="result success">
+                <strong>Domain Name:</strong> {{ domain_name }}
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="result error">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+
+        <a href="/dns">Go to DNS Resolution</a>
+    </div>
+</body>
+</html>
