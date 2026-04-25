@@ -33,6 +33,7 @@ def home():
     return """
     <h2>NetAssist - DNS Tools</h2>
     <ul>
+        <li><a href='/subnet'>Subnet Calculator</a></li>
         <li><a href='/dns'>DNS Resolution</a></li>
         <li><a href='/reverse-dns'>Reverse DNS Lookup</a></li>
         <li><a href='/port-checker'>Port Checker</a></li>
@@ -146,6 +147,46 @@ def port_checker():
                            result=result,
                            error=error,
                            status=status)
+
+
+
+# -------- Subnet Calculator --------
+@app.route("/subnet", methods=["GET", "POST"])
+def subnet_calculator():
+    result = None
+    error = None
+    ip_input = ""
+
+    if request.method == "POST":
+        ip_input = request.form.get("ip_network", "").strip()
+
+        if not ip_input:
+            error = "Please enter an IP address with subnet. Example: 192.168.1.0/24"
+
+        else:
+            try:
+                network = ipaddress.ip_network(ip_input, strict=False)
+                hosts = list(network.hosts())
+
+                result = {
+                    "network_address": network.network_address,
+                    "broadcast_address": network.broadcast_address,
+                    "subnet_mask": network.netmask,
+                    "total_addresses": network.num_addresses,
+                    "usable_hosts": len(hosts),
+                    "first_host": hosts[0] if hosts else "N/A",
+                    "last_host": hosts[-1] if hosts else "N/A"
+                }
+
+            except ValueError:
+                error = "Invalid input. Please use format like 192.168.1.0/24"
+
+    return render_template(
+        "subnet.html",
+        result=result,
+        error=error,
+        ip_input=ip_input
+    )
 
 # -------- Run App --------
 if __name__ == "__main__":

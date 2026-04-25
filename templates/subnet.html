@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subnet Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Subnet Calculator</h1>
+    <p>Calculate network address, broadcast address, subnet mask, and host range.</p>
+
+    <form method="POST">
+        <input
+                type="text"
+                name="ip_network"
+                placeholder="Enter IP with subnet (e.g. 192.168.1.0/24)"
+                value="{{ ip_input }}"
+                required
+        >
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+    <div class="result success">
+        <p><strong>Network Address:</strong> {{ result.network_address }}</p>
+        <p><strong>Broadcast Address:</strong> {{ result.broadcast_address }}</p>
+        <p><strong>Subnet Mask:</strong> {{ result.subnet_mask }}</p>
+        <p><strong>Total Addresses:</strong> {{ result.total_addresses }}</p>
+        <p><strong>Usable Hosts:</strong> {{ result.usable_hosts }}</p>
+        <p><strong>First Host:</strong> {{ result.first_host }}</p>
+        <p><strong>Last Host:</strong> {{ result.last_host }}</p>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="result error">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="link-group">
+        <a href="/">Home</a> |
+        <a href="/dns">DNS</a> |
+        <a href="/reverse-dns">Reverse DNS</a> |
+        <a href="/port-checker">Port Checker</a>
+    </div>
+</div>
+</body>
+</html>
