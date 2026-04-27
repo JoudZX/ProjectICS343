@@ -1,0 +1,34 @@
+{% extends "tool_layout.html" %}
+{% set eyebrow = "Visualization" %}
+{% set heading = "Domain Path Visualization" %}
+{% set description = "Visualize how a domain request reaches its destination IP address." %}
+{% block title %}Path Visualization{% endblock %}
+{% block tool_body %}
+<form method="POST" class="form-card">
+    <label>Domain Name</label>
+    <input type="text" name="domain" value="{{ domain }}" placeholder="google.com" required>
+    <button type="submit">Visualize Path</button>
+</form>
+{% if result %}
+<div class="dns-tree">
+    {% for node in result.tree %}
+    <div class="tree-level">
+        <div class="tree-card">
+            <div class="tree-badge">{{ loop.index }}</div>
+            <h3>{{ node.name }}</h3>
+            <p>{{ node.detail }}</p>
+        </div>
+
+        {% if not loop.last %}
+        <div class="tree-line"></div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="result success">
+    <strong>Resolved IP:</strong> {{ result.ip }}
+</div>
+{% endif %}
+{% if error %}<div class="result error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+{% endblock %}
