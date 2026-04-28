@@ -1,0 +1,20 @@
+{% extends "tool_layout.html" %}
+{% set eyebrow = "IP Calculator" %}
+{% set heading = "Subnet Calculator" %}
+{% set description = "Calculate network address, broadcast address, subnet mask, and host range." %}
+{% block title %}Subnet Calculator{% endblock %}
+{% block tool_body %}
+<form method="POST" class="form-card">
+    <label>IP Address with Prefix</label>
+    <input type="text" name="ip_network" value="{{ ip_input }}" placeholder="192.168.1.0/24" required>
+    <button type="submit">Calculate Subnet</button>
+</form>
+{% if result %}
+<div class="result success table-result">
+    {% for key, value in result.items() %}
+    <div><span>{{ key }}</span><strong>{{ value }}</strong></div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if error %}<div class="result error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+{% endblock %}

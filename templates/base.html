@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NetAssist Pro{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="background-grid"></div>
+    <nav class="navbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">NA</span>
+            <span>
+                <strong>NetAssist</strong>
+                <small>Network Engineering Toolkit</small>
+            </span>
+        </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/subnet">Subnet</a>
+            <a href="/dns">DNS</a>
+            <a href="/reverse-dns">Reverse DNS</a>
+            <a href="/port-checker">Port</a>
+            <a href="/validation">Validation</a>
+            <a href="/ping">Ping</a>
+            <a href="/visualization">Path</a>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

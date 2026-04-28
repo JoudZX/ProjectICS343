@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}NetAssist Pro | HOME{% endblock %}
+{% block content %}
+<section class="hero pro-hero">
+    <div class="hero-main">
+        <span class="eyebrow">Professional Network Lab</span>
+        <h1>Network Analyser built for Network Engineers and students.</h1>
+        <p>Use NetAssist Pro to validate domains, resolve DNS records, calculate subnets, test reachability, inspect ports, and visualize the basic request path in one website.</p>
+        <div class="hero-actions">
+            <a class="primary-link" href="/subnet">Start Analysis</a>
+            <a class="secondary-link" href="/ping">Run Ping Test</a>
+        </div>
+    </div>
+    <aside class="hero-card status-card">
+        <span class="status-dot"></span>
+        <small>System Status</small>
+        <strong>7 Tools Ready</strong>
+        <p>Designed for networking labs, troubleshooting practice.</p>
+        <div class="metric-row">
+            <div><b>Flask</b><span>Backend</span></div>
+            <div><b>TCP/IP</b><span>Tools</span></div>
+            <div><b>Responsive</b><span>UI</span></div>
+        </div>
+    </aside>
+</section>
+
+<section class="section-heading">
+    <span class="eyebrow">Toolkit</span>
+    <h2>Choose a diagnostic module</h2>
+</section>
+<section class="tool-grid">
+    {% for tool in tools %}
+    <a class="tool-card" href="{{ tool.url }}">
+        <span class="tool-icon">{{ tool.icon }}</span>
+        <h3>{{ tool.title }}</h3>
+        <p>{{ tool.desc }}</p>
+        <span class="card-arrow">Open tool -></span>
+    </a>
+    {% endfor %}
+</section>
+{% endblock %}

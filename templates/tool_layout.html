@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="tool-wrapper">
+    <div class="tool-header">
+        <span class="eyebrow">{{ eyebrow }}</span>
+        <h1>{{ heading }}</h1>
+        <p>{{ description }}</p>
+    </div>
+    <div class="panel tool-panel">
+        {% block tool_body %}{% endblock %}
+    </div>
+</section>
+{% endblock %}
