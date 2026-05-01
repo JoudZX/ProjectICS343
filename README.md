@@ -1,4 +1,4 @@
-# NetAssist Enhanced
+# NetAssist 
 
 A complete Flask networking assistant with:
 
